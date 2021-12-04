@@ -1,0 +1,15 @@
+
+stages:
+  - deploy
+
+deploy:
+  stage: deploy
+  script:
+    - echo "Deploying!"
+    - >
+      if [ "$CI_COMMIT_BRANCH" == "main" ]; then
+        rsync -r /home/gitlab-runner/builds/QP_PEzjB/0/oyw21/oyw-reactjs/build /var/www/oyw-reactjs
+      else
+        echo "nothing from other"
+      fi
+    - echo "Deployed"
